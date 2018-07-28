@@ -11,7 +11,11 @@ const defaultRegion = {
 
 export default class App extends React.Component {
   render() {
-    return <MapView onRegionChange={this.onRegionChange} style={styles.map} initialRegion={defaultRegion} />;
+    return (
+      <MapView onRegionChange={this.onRegionChange} style={styles.map} initialRegion={defaultRegion}>
+        {this.props.children}
+      </MapView>
+    );
   }
 }
 
