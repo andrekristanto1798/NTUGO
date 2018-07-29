@@ -9,7 +9,7 @@ const defaultRegion = {
   longitudeDelta: 0.014920793473734761,
 };
 
-export default class App extends React.Component {
+export default class Map extends React.Component {
   render() {
     return (
       <MapView onRegionChange={this.onRegionChange} style={styles.map} initialRegion={defaultRegion}>

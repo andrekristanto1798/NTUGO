@@ -2,9 +2,10 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Map from './src/components/Map';
 import BusMarkerCluster from './src/components/BusMarkerCluster';
-import { RED_BUS_LIST, RED_BUS_STOP_LIST } from './src/constants/RedBusStopConstant';
+import { RED_BUS_STOP_LIST } from './src/constants/RedBusStopConstant';
 import { BLUE_BUS_STOP_LIST } from './src/constants/BlueBusStopConstant';
 import getAllBusData from './src/api/BusAPI';
+import BusDetail from './src/components/BusDetail';
 
 export default class App extends React.Component {
   state = {
@@ -33,10 +34,12 @@ export default class App extends React.Component {
   render() {
     const { redBusList, blueBusList } = this.state;
     return (
-      <Map>
-        <BusMarkerCluster data={{ busStop: RED_BUS_STOP_LIST, bus: redBusList }} color="red" />
-        <BusMarkerCluster data={{ busStop: BLUE_BUS_STOP_LIST, bus: blueBusList }} color="blue" />
-      </Map>
+      // <Map>
+      //   <BusMarkerCluster data={{ busStop: RED_BUS_STOP_LIST, bus: redBusList }} color="red" />
+      //   <BusMarkerCluster data={{ busStop: BLUE_BUS_STOP_LIST, bus: blueBusList }} color="blue" />
+        
+      // </Map>
+      <BusDetail busList={{ }} busStop={{ }} />
     );
   }
 }
