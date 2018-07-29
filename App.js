@@ -5,18 +5,15 @@ import BusMarkerCluster from './src/components/BusMarkerCluster';
 import { RED_BUS_STOP_LIST } from './src/constants/RedBusStopConstant';
 import { BLUE_BUS_STOP_LIST } from './src/constants/BlueBusStopConstant';
 import getAllBusData from './src/api/BusAPI';
-<<<<<<< HEAD
-import BusDetail from './src/components/BusDetail';
-=======
 import BusSelectionFilter, { defaultOption } from './src/components/BusSelectionFilter';
 import * as BUS_TYPE from './src/constants/BusType';
->>>>>>> 46e6b120330391a1fc7795db7e95a9a9233a07e6
 
 export default class App extends React.Component {
   state = {
     redBusList: [],
     blueBusList: [],
     userSelection: BUS_TYPE.RED,
+    busDetail: {}
   };
 
   /**
