@@ -1,12 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+//Import component
 import Map from './src/components/Map';
 import BusMarkerCluster from './src/components/BusMarkerCluster';
+import BusRoute from './src/components/BusRoute';
+import BusSelectionFilter, { defaultOption } from './src/components/BusSelectionFilter';
+//Import data
 import { RED_BUS_STOP_LIST } from './src/constants/RedBusStopConstant';
 import { BLUE_BUS_STOP_LIST } from './src/constants/BlueBusStopConstant';
-import getAllBusData from './src/api/BusAPI';
-import BusSelectionFilter, { defaultOption } from './src/components/BusSelectionFilter';
+import RED_BUS_ROUTE from './src/constants/RedBusRoute';
+import BLUE_BUS_ROUTE from './src/constants/BlueBusRoute';
 import * as BUS_TYPE from './src/constants/BusType';
+//Import API
+import getAllBusData from './src/api/BusAPI';
+
+//To ignore the Remote debugger warning
+console.ignoredYellowBox = ['Remote debugger'];
 
 export default class App extends React.Component {
   state = {
@@ -42,12 +51,22 @@ export default class App extends React.Component {
     return (
       <View style={styles.mainContainer}>
         <Map>
-          {userSelection === BUS_TYPE.RED && (
-            <BusMarkerCluster data={{ busStop: RED_BUS_STOP_LIST, bus: redBusList }} color="red" />
-          )}
-          {userSelection === BUS_TYPE.BLUE && (
-            <BusMarkerCluster data={{ busStop: BLUE_BUS_STOP_LIST, bus: blueBusList }} color="blue" />
-          )}
+          {userSelection === BUS_TYPE.RED && [
+            <BusMarkerCluster
+              key="red-bus-marker"
+              data={{ busStop: RED_BUS_STOP_LIST, bus: redBusList }}
+              color="red"
+            />,
+            <BusRoute key="red-bus-route" coordinates={RED_BUS_ROUTE} color={BUS_TYPE.RGBA(255, 0, 0, 0.3)} />,
+          ]}
+          {userSelection === BUS_TYPE.BLUE && [
+            <BusMarkerCluster
+              key="blue-bus-marker"
+              data={{ busStop: BLUE_BUS_STOP_LIST, bus: blueBusList }}
+              color="blue"
+            />,
+            <BusRoute key="blue-bus-route" coordinates={BLUE_BUS_ROUTE} color={BUS_TYPE.RGBA(0, 0, 255, 0.3)} />,
+          ]}
         </Map>
         <BusSelectionFilter options={defaultOption} active={userSelection} onSelect={this.onUserSelectBus} />
       </View>
