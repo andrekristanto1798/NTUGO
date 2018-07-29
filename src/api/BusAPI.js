@@ -1,3 +1,5 @@
+import * as BUS_TYPE from '../constants/BusType';
+
 const BASE_URL = 'https://baseride.com/routes/apigeo/routevariantvehicle';
 const FORMAT_JSON = '/?format=json';
 const RED_PATH = '/44478';
@@ -5,11 +7,6 @@ const BLUE_PATH = '/44479';
 
 const GET = 'get';
 const POST = 'post';
-
-export const BUS_TYPE = {
-  RED: 'red',
-  BLUE: 'blue',
-};
 
 async function fetchBusData(type) {
   var finalURL = BASE_URL;
