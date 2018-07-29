@@ -15,6 +15,7 @@ export default class NTUGOMarker extends Component {
     icon: PropTypes.string.isRequired,
     title: PropTypes.string,
     bearing: PropTypes.number,
+    opacity: PropTypes.number,
     size: PropTypes.number,
     onClick: PropTypes.func,
   };
@@ -25,9 +26,9 @@ export default class NTUGOMarker extends Component {
   };
 
   render() {
-    const { color, position, icon, bearing = 0, size = 10 } = this.props;
+    const { color, position, icon, bearing = 0, size = 10, opacity = 0.6 } = this.props;
     return (
-      <Marker coordinate={position} rotation={bearing} onPress={this.onPress}>
+      <Marker coordinate={position} rotation={bearing} onPress={this.onPress} opacity={opacity}>
         <Icon type="font-awesome" name={icon} color={color} size={size} />
       </Marker>
     );

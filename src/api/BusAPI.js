@@ -37,7 +37,7 @@ const doGetBusDataAPI = async type => {
   if (vehicles.length <= 0) return [];
   return vehicles.reduce((acc, data, i) => {
     const { bearing, lat, lon, speed } = data;
-    const tempBus = { bearing, position: { latitude: lat, longitude: lon }, speed };
+    const tempBus = { bearing, position: { latitude: parseFloat(lat, 7), longitude: parseFloat(lon, 7) }, speed };
     return [...acc, tempBus];
   }, []);
 };
@@ -45,7 +45,10 @@ const doGetBusDataAPI = async type => {
 const getAllBusData = async () => {
   const parsedRedBus = await doGetBusDataAPI(BUS_TYPE.RED);
   const parsedBlueBus = await doGetBusDataAPI(BUS_TYPE.BLUE);
-  console.log({ parsedBlueBus, parsedRedBus });
+  return {
+    parsedRedBus,
+    parsedBlueBus,
+  };
 };
 
 export default getAllBusData;
