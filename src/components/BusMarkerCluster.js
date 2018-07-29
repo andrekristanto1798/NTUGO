@@ -21,7 +21,7 @@ export default class BusMarkerCluster extends Component {
   };
 
   renderBusStop = ({ position, color, ...additionalProps }) => {
-    return <NTUGOMarker size={20} position={position} color={color} icon={NTUGO_ICON.BUSSTOP} {...additionalProps} />;
+    return <NTUGOMarker size={20} position={position} color={color} icon={NTUGO_ICON.BUS_STOP} {...additionalProps} />;
   };
 
   renderData = () => {
