@@ -31,23 +31,19 @@ export default class BusSelectionFilter extends Component {
 
   renderSelectionView = () => {
     const { options, active } = this.props;
-    return (
-      <View style={styles.container}>
-        {options.map((option, i) => {
-          const { name, icon, color } = option;
-          var buttonStyle = selectionButton;
-          if (active === name) {
-            buttonStyle = { ...buttonStyle, backgroundColor: '#f1f1f1' };
-          }
-          return (
-            <TouchableOpacity key={i} style={buttonStyle} onPress={this.onPressSelection(name)}>
-              <Icon type="font-awesome" name={icon} color={color} />
-              <Text>{name}</Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    );
+    return options.map((option, i) => {
+      const { name, icon, color } = option;
+      var buttonStyle = selectionButton;
+      if (active === name) {
+        buttonStyle = { ...buttonStyle, backgroundColor: '#f1f1f1' };
+      }
+      return (
+        <TouchableOpacity key={i} style={buttonStyle} onPress={this.onPressSelection(name)}>
+          <Icon type="font-awesome" name={icon} color={color} />
+          <Text>{name}</Text>
+        </TouchableOpacity>
+      );
+    });
   };
 
   onToogleSelectionView = () => this.setState({ showSelectionView: !this.state.showSelectionView });
@@ -62,12 +58,11 @@ export default class BusSelectionFilter extends Component {
   }
 
   render() {
-    console.log('rendering BusSelectionFilter');
     const { showSelectionView } = this.state;
     return (
-      <View style={{ flex: 1, zIndex: 999, backgroundColor: 'black' }}>
-        {this.renderSettingIcon()}
-        {showSelectionView ? this.renderSelectionView() : null}
+      <View style={styles.mainContainer}>
+        <View style={styles.buttonContainer}>{this.renderSelectionView()}</View>
+        <View style={styles.detailContainer}>{this.props.children}</View>
       </View>
     );
   }
@@ -89,26 +84,29 @@ const selectionButton = {
 };
 
 const styles = StyleSheet.create({
-  overlay: {
-    position: 'absolute',
-    top: 32,
-    right: 16,
-    padding: 10,
-    backgroundColor: 'white',
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
+  mainContainer: {
+    borderTopWidth: 0.5,
+    borderTopColor: '#d6d7da',
+    display: 'flex',
+    flexDirection: 'row',
+    flexGrow: 0,
+    flexShrink: 0,
+    flexBasis: 'auto',
   },
-  container: {
-    position: 'absolute',
-    top: 32,
-    right: 56,
-    height: 'auto',
-    backgroundColor: 'white',
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'column',
     padding: 10,
-    marginRight: 5,
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
+    flexGrow: 0,
+    flexShrink: 0,
+    flexBasis: 'auto',
+  },
+  detailContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 10,
+    flex: 1,
+    borderLeftWidth: 0.5,
+    borderLeftColor: '#d6d7da',
   },
 });

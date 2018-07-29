@@ -13,7 +13,6 @@ export default class App extends React.Component {
     redBusList: [],
     blueBusList: [],
     userSelection: BUS_TYPE.RED,
-    canRenderOverlay: false,
   };
 
   /**
@@ -32,7 +31,6 @@ export default class App extends React.Component {
     //Do get data from the server every 5s
     const timeToRetrieveData = 5000;
     setInterval(this.retrieveDataFromServer, timeToRetrieveData);
-    setTimeout(() => this.setState({ canRenderOverlay: true }), 10000);
   }
 
   onUserSelectBus = busName => {
@@ -43,9 +41,6 @@ export default class App extends React.Component {
     const { redBusList, blueBusList, userSelection } = this.state;
     return (
       <View style={styles.mainContainer}>
-        {this.state.canRenderOverlay && (
-          <BusSelectionFilter options={defaultOption} active={userSelection} onSelect={this.onUserSelectBus} />
-        )}
         <Map>
           {userSelection === BUS_TYPE.RED && (
             <BusMarkerCluster data={{ busStop: RED_BUS_STOP_LIST, bus: redBusList }} color="red" />
@@ -54,6 +49,7 @@ export default class App extends React.Component {
             <BusMarkerCluster data={{ busStop: BLUE_BUS_STOP_LIST, bus: blueBusList }} color="blue" />
           )}
         </Map>
+        <BusSelectionFilter options={defaultOption} active={userSelection} onSelect={this.onUserSelectBus} />
       </View>
     );
   }
@@ -63,6 +59,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     display: 'flex',
     position: 'absolute',
+    flexDirection: 'column',
     top: 0,
     left: 0,
     width: '100%',

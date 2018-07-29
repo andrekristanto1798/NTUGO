@@ -21,6 +21,6 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   map: {
-    flex: 1,
+    flex: 10,
   },
 });
