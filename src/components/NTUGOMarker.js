@@ -4,8 +4,8 @@ import { Marker } from 'react-native-maps';
 import { Icon } from 'react-native-elements';
 
 export const NTUGO_ICON = {
-  BUS: 'bus',
-  BUSSTOP: 'map-pin',
+  BUS: 'location-arrow',
+  BUSSTOP: 'bus',
 };
 
 export default class NTUGOMarker extends Component {

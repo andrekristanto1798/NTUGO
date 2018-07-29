@@ -15,12 +15,12 @@ export default class BusMarkerCluster extends Component {
     console.log({ position, title });
   };
 
-  renderBus = ({ position, color }) => {
-    return <NTUGOMarker position={position} color={color} icon={NTUGO_ICON.BUS} />;
+  renderBus = ({ position, color, ...additionalProps }) => {
+    return <NTUGOMarker position={position} color={color} icon={NTUGO_ICON.BUS} {...additionalProps} />;
   };
 
-  renderBusStop = ({ position, color, ...props }) => {
-    return <NTUGOMarker size={20} position={position} color={color} icon={NTUGO_ICON.BUSSTOP} {...props} />;
+  renderBusStop = ({ position, color, ...additionalProps }) => {
+    return <NTUGOMarker size={20} position={position} color={color} icon={NTUGO_ICON.BUSSTOP} {...additionalProps} />;
   };
 
   renderData = () => {
@@ -29,8 +29,10 @@ export default class BusMarkerCluster extends Component {
     const Bus = this.renderBus;
     const BusStop = this.renderBusStop;
     return [
-      bus.map((bus, i) => <Bus key={i} position={bus} color={color} />),
-      busStop.map((bus_stop, i) => <BusStop onClick={this.onClickBusStop} key={i} position={bus_stop} color={color} />),
+      bus.map(({ position, bearing, speed }, i) => <Bus key={i} position={position} color={color} bearing={bearing} />),
+      busStop.map(({ position, name }, i) => (
+        <BusStop onClick={this.onClickBusStop} key={i} position={position} color={color} title={name} />
+      )),
     ];
   };
 

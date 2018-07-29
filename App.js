@@ -3,8 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import Map from './src/components/Map';
 import BusMarkerCluster from './src/components/BusMarkerCluster';
 import { RED_BUS_LIST, RED_BUS_STOP_LIST } from './src/constants/RedBusStopConstant';
+import getAllBusData from './src/api/BusAPI';
 
 export default class App extends React.Component {
+  componentDidMount() {
+    getAllBusData();
+  }
+
   render() {
     return (
       <Map>
