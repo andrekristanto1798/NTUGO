@@ -9,11 +9,19 @@ export const defaultOption = [
   { name: BUS_TYPE.BLUE, icon: 'bus', color: 'blue' },
 ];
 
+/**
+ * To render the bus available options for the user
+ * 
+ * Requires `options`, `active`, `onSelect` props
+ * 
+ * <Optional> `children` to be rendered in the right container
+ */
 export default class BusSelectionFilter extends Component {
   static propTypes = {
     options: PropTypes.array.isRequired,
     active: PropTypes.string.isRequired,
     onSelect: PropTypes.func.isRequired,
+    children: PropTypes.children
   };
 
   constructor(props) {

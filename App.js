@@ -42,32 +42,48 @@ export default class App extends React.Component {
     setInterval(this.retrieveDataFromServer, timeToRetrieveData);
   }
 
+  /**
+   * Callback
+   * Getting the user selection data from BusSelectionFilter component
+   */
   onUserSelectBus = busName => {
     this.setState({ userSelection: busName });
   };
 
-  render() {
+  renderBusBasedOnUserSelection = () => {
     const { redBusList, blueBusList, userSelection } = this.state;
+    var busStop, bus, busColor, busRoute, routeColor;
+    switch (userSelection) {
+      case BUS_TYPE.RED:
+        busStop = RED_BUS_STOP_LIST;
+        bus = redBusList;
+        busColor = 'red';
+        busRoute = RED_BUS_ROUTE;
+        routeColor = BUS_TYPE.RGBA(255, 0, 0, 0.3);
+        break;
+      case BUS_TYPE.BLUE:
+        busStop = BLUE_BUS_STOP_LIST;
+        bus = blueBusList;
+        busColor = 'blue';
+        busRoute = BLUE_BUS_ROUTE;
+        routeColor = BUS_TYPE.RGBA(0, 0, 255, 0.3);
+        break;
+      default:
+        busStop = [];
+        bus = [];
+        busColor = 'green';
+        break;
+    }
+    return [
+      <BusMarkerCluster key="bus-marker" data={{ busStop, bus }} color={busColor} />,
+      <BusRoute key="bus-route" coordinates={busRoute} color={routeColor} />,
+    ];
+  };
+
+  render() {
     return (
       <View style={styles.mainContainer}>
-        <Map>
-          {userSelection === BUS_TYPE.RED && [
-            <BusMarkerCluster
-              key="red-bus-marker"
-              data={{ busStop: RED_BUS_STOP_LIST, bus: redBusList }}
-              color="red"
-            />,
-            <BusRoute key="red-bus-route" coordinates={RED_BUS_ROUTE} color={BUS_TYPE.RGBA(255, 0, 0, 0.3)} />,
-          ]}
-          {userSelection === BUS_TYPE.BLUE && [
-            <BusMarkerCluster
-              key="blue-bus-marker"
-              data={{ busStop: BLUE_BUS_STOP_LIST, bus: blueBusList }}
-              color="blue"
-            />,
-            <BusRoute key="blue-bus-route" coordinates={BLUE_BUS_ROUTE} color={BUS_TYPE.RGBA(0, 0, 255, 0.3)} />,
-          ]}
-        </Map>
+        <Map>{this.renderBusBasedOnUserSelection()}</Map>
         <BusSelectionFilter options={defaultOption} active={userSelection} onSelect={this.onUserSelectBus} />
       </View>
     );
