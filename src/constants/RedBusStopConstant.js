@@ -137,6 +137,84 @@ const MOCK_RED_BUS_3 = {
   speed: 10,
 };
 
+const EDGE_HALL_12_LWN = {
+  start: 'HALL_12',
+  end: 'LWN',
+  distance: 670
+}
+
+const EDGE_LWN_CEE = {
+  start: 'LWN',
+  end: 'CEE',
+  distance: 350
+}
+
+const EDGE_CEE_WKW = {
+  start: 'CEE',
+  end: 'WKW',
+  distance: 500
+}
+
+const EDGE_WKW_HALL_7 = {
+  start: 'WKW',
+  end: 'HALL_7',
+  distance: 400
+}
+
+const EDGE_HALL_7_INNOVATION_CENTRE = {
+  start: 'HALL_7',
+  end: 'INNOVATION_CENTRE',
+  distance: 500
+}
+
+const EDGE_INNOVATION_CENTRE_HALL_4 = {
+  start: 'INNOVATION_CENTRE',
+  end: 'HALL_4',
+  distance: 450
+}
+
+const EDGE_HALL_4_HALL_1 = {
+  start: 'HALL_4',
+  end: 'HALL_1',
+  distance: 300
+}
+
+const EDGE_HALL_1_CANTEEN_2 = {
+  start: 'HALL_1',
+  end: 'CANTEEN_2',
+ distance: 280
+}
+
+const EDGE_CANTEEN_2_HALL_9 = {
+  start: 'CANTEEN_2',
+  end: 'HALL_9',
+  distance: 550
+}
+
+const EDGE_HALL_9_HALL_10 = {
+  start: 'HALL_9',
+  end: 'HALL_10',
+  distance: 350
+}
+
+const EDGE_HALL_10_HALL_11 = {
+  start: 'HALL_10',
+  end: 'HALL_11',
+  distance: 400
+}
+
+const EDGE_HALL_11_TAMARIND_HALL = {
+  start: 'HALL_11',
+  end: 'TAMARIND_HALL',
+  distance: 550
+}
+
+const EDGE_TAMARIND_HALL_HALL_12 = {
+  start: 'TAMARIND_HALL',
+  end: 'HALL_12',
+  distance: 210
+}
+
 export const RED_BUS_LIST = [MOCK_RED_BUS_1, MOCK_RED_BUS_2, MOCK_RED_BUS_3];
 export const RED_BUS_STOP_LIST = [
   HALL_12,
@@ -154,3 +232,18 @@ export const RED_BUS_STOP_LIST = [
   HALL_11,
   TAMARIND_HALL,
 ];
+export const RED_EDGE_LIST = [
+  EDGE_HALL_12_LWN,
+  EDGE_LWN_CEE,
+  EDGE_CEE_WKW,
+  EDGE_WKW_HALL_7,
+  EDGE_HALL_7_INNOVATION_CENTRE,
+  EDGE_INNOVATION_CENTRE_HALL_4,
+  EDGE_HALL_4_HALL_1,
+  EDGE_HALL_1_CANTEEN_2,
+  EDGE_CANTEEN_2_HALL_9,
+  EDGE_HALL_9_HALL_10,
+  EDGE_HALL_10_HALL_11,
+  EDGE_HALL_11_TAMARIND_HALL,
+  EDGE_TAMARIND_HALL_HALL_12,
+]
