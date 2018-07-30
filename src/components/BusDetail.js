@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
-import { Button } from '../../node_modules/react-native-elements';
 
 export default class BusDetail extends Component {
   render() {
     const { busStopName, busType, nextArrival, subsequentArrival } = this.props;
 
     return (
-      <View>
+      <View style={[styles.detailContainer]}>
         <View style={[styles.row]}>
           <View style={[styles.box, styles.header]}>
             <Text style={styles.title}> {busStopName} </Text>
@@ -29,11 +28,15 @@ export default class BusDetail extends Component {
   }
 }
 
-toggleDetails = () => {
-  // method to toggle the component rendering
-}
-
 const styles = StyleSheet.create({
+  detailContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 10,
+    flex: 1,
+    // borderLeftWidth: 0.5,
+    borderLeftColor: '#d6d7da',
+  },
   row: {
     flex: 1,
     flexDirection: 'row',
@@ -44,6 +47,8 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     backgroundColor: '#31659C',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
   box2: {
     backgroundColor: '#639ACE'
