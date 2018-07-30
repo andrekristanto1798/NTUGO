@@ -9,10 +9,82 @@ const OPP_CEE = { name: 'Opp. CEE', position: { latitude: 1.345862, longitude: 1
 const OPP_LWN = { name: 'NIE, Opp. LWN Library', position: { latitude: 1.347969, longitude: 103.68024 } };
 const OPP_HALL_3 = { name: 'Opp. Hall 3 & 16', position: { latitude: 1.350485, longitude: 103.68038 } };
 const OPP_HALL_14 = { name: 'Opp. Hall 14 & 15', position: { latitude: 1.353155, longitude: 103.681656 } };
-const OPP_HALL_TAMARIN = {
+const OPP_HALL_TAMARIND = {
   name: 'Opp Nanyang Crescent Hall',
   position: { latitude: 1.354785, longitude: 103.683856 },
 };
+
+const EDGE_OPP_LWN_OPP_HALL_3 = {
+  start: 'OPP_LWN',
+  end: 'OPP_HALL_3',
+  distance: 400
+}
+
+const EDGE_OPP_HALL_3_OPP_HALL_14 = {
+  start: 'OPP_HALL_3',
+  end: 'OPP_HALL_14',
+  distance: 400
+}
+
+const EDGE_OPP_HALL_14_OPP_HALL_TAMARIND = {
+  start: 'OPP_HALL_14',
+  end: 'OPP_HALL_TAMARIND',
+  distance: 350
+}
+
+const EDGE_OPP_HALL_TAMARIND_OPP_HALL_10_11 = {
+  start: 'OPP_HALL_TAMARIND',
+  end: 'OPP_HALL_10_11',
+  distance: 500
+}
+
+const EDGE_OPP_HALL_10_11_HALL_8 = {
+  start: 'OPP_HALL_10_11',
+  end: 'HALL_8',
+  distance: 550
+}
+
+const EDGE_OPP_HALL_8_OPP_HALL_2 = {
+  start: 'OPP_HALL_8',
+  end: 'OPP_HALL_2',
+  distance: 450
+}
+
+const EDGE_OPP_HALL_2_OPP_HALL_4 = {
+  start: 'OPP_HALL_2',
+  end: 'OPP_HALL_4',
+  distance: 750
+}
+
+const EDGE_OPP_HALL_4_OPP_INNOV_CENTRE = {
+  start: 'OPP_HALL_4',
+  end: 'OPP_INNOV_CENTRE',
+  distance: 400
+}
+
+const EDGE_OPP_INNOV_CENTRE_OPP_SPMS = {
+  start: 'OPP_INNOV_CENTRE',
+  end: 'OPP_SPMS',
+  distance: 500
+}
+
+const EDGE_OPP_SPMS_OPP_WKWSCI = {
+  start: 'OPP_SPMS',
+  end: 'OPP_WKWSCI',
+  distance: 350
+}
+
+const EDGE_OPP_WKWSCI_OPP_CEE = {
+  start: 'OPP_WKWSCI',
+  end: 'OPP_CEE',
+  distance: 500
+}
+
+const EDGE_OPP_CEE_OPP_LWN = {
+  start: 'OPP_CEE',
+  end: 'OPP_LWN',
+  distance: 400
+}
 
 export const BLUE_BUS_STOP_LIST = [
   OPP_HALL_10_11,
@@ -26,5 +98,20 @@ export const BLUE_BUS_STOP_LIST = [
   OPP_LWN,
   OPP_HALL_3,
   OPP_HALL_14,
-  OPP_HALL_TAMARIN,
+  OPP_HALL_TAMARIND,
 ];
+
+export const RED_EDGE_LIST = [
+  EDGE_OPP_LWN_OPP_HALL_3,
+  EDGE_OPP_HALL_3_OPP_HALL_14,
+  EDGE_OPP_HALL_14_OPP_HALL_TAMARIND,
+  EDGE_OPP_HALL_TAMARIND_OPP_HALL_10_11,
+  EDGE_OPP_HALL_10_11_HALL_8,
+  EDGE_OPP_HALL_8_OPP_HALL_2,
+  EDGE_OPP_HALL_2_OPP_HALL_4,
+  EDGE_OPP_HALL_4_OPP_INNOV_CENTRE,
+  EDGE_OPP_INNOV_CENTRE_OPP_SPMS,
+  EDGE_OPP_SPMS_OPP_WKWSCI,
+  EDGE_OPP_WKWSCI_OPP_CEE,
+  EDGE_OPP_CEE_OPP_LWN,
+]
