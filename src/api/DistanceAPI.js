@@ -6,15 +6,21 @@ const DESTINATION = '&destinations='
 const GET = 'get';
 
 async function getEstimatedTime(busStop, busPosition) {
-    let finalURL = BASE_URL + FORMAT_JSON_AND_UNIT 
-                    + ORIGIN + busPosition.position.latitude + "," + busPosition.position.longitude
-                    + DESTINATION + busStop.position.latitude + "," + busStop.position.longitude
-                    + API_KEY;
+    let finalURL = BASE_URL
+        + FORMAT_JSON_AND_UNIT
+        + ORIGIN + busPosition.position.latitude + "," + busPosition.position.longitude
+        + DESTINATION + busStop.position.latitude + "," + busStop.position.longitude
+        + API_KEY
     const request = {
-      method: GET,
-      mode: 'no-cors'
-    };
+        method: GET,
+    }
     return fetch(finalURL, request)
-      .then(response => response.json())
-      .catch(error => console.log(error));
+        .then(response => response.json())
+        .then(response => response.rows[0].elements[0].duration.text)
+        .catch(error => console.log(error));
+}
+
+const getDuration = async (busStop, busPosition) => {
+    duration = await getEstimatedTime(busStop, busPosition)
+    return duration
 }
