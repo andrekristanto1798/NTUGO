@@ -8,6 +8,11 @@ export const NTUGO_ICON = {
   BUS_STOP: 'bus',
 };
 
+/**
+ * Currently this component is to wrap the Marker with Icon component
+ * 
+ * Support only `Bus` and `BusStop` icon for the moment
+ */
 export default class NTUGOMarker extends Component {
   static propTypes = {
     color: PropTypes.string.isRequired,
@@ -20,6 +25,9 @@ export default class NTUGOMarker extends Component {
     onClick: PropTypes.func,
   };
 
+  /**
+   * Provide callback to the parent component using `onClick` props
+   */
   onPress = () => {
     const { onClick, position, title = '' } = this.props;
     onClick && onClick({ position, title });
