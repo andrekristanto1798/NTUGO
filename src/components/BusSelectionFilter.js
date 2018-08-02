@@ -3,6 +3,7 @@ import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import * as BUS_TYPE from '../constants/BusType';
 import { Icon } from 'react-native-elements';
+import BusDetail from '../components/BusDetail';
 
 export const defaultOption = [
   { name: BUS_TYPE.RED, icon: 'bus', color: 'red' },
@@ -70,7 +71,7 @@ export default class BusSelectionFilter extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.buttonContainer}>{this.renderSelectionView()}</View>
-        <View style={styles.detailContainer}>{this.props.children}</View>
+        <BusDetail />
       </View>
     );
   }
@@ -108,13 +109,5 @@ const styles = StyleSheet.create({
     flexGrow: 0,
     flexShrink: 0,
     flexBasis: 'auto',
-  },
-  detailContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: 10,
-    flex: 1,
-    borderLeftWidth: 0.5,
-    borderLeftColor: '#d6d7da',
   },
 });

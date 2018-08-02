@@ -22,6 +22,7 @@ export default class App extends React.Component {
     redBusList: [],
     blueBusList: [],
     userSelection: BUS_TYPE.RED,
+    busDetail: {}
   };
 
   /**
