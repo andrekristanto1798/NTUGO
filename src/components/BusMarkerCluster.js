@@ -20,9 +20,9 @@ export default class BusMarkerCluster extends Component {
     color: PropTypes.string.isRequired,
   };
 
-  onClickBusStop = ({ position, title }) => {
-    console.log({ position, title });
-    //Open the Bus stop detail here
+  onClick = type => ({ position, title }) => {
+    const { onClick } = this.props;
+    onClick && onClick({ type, position, title });
   };
 
   renderBus = ({ position, color, ...additionalProps }) => {
@@ -40,11 +40,18 @@ export default class BusMarkerCluster extends Component {
     const BusStop = this.renderBusStop;
     return [
       bus.map(({ position, bearing, speed, ...additionalProps }, i) => (
-        <Bus key={i} position={position} color={color} bearing={bearing - 45} {...additionalProps} />
+        <Bus
+          onClick={this.onClick('bus')}
+          key={i}
+          position={position}
+          color={color}
+          bearing={bearing - 45}
+          {...additionalProps}
+        />
       )),
       busStop.map(({ position, name, ...additionalProps }, i) => (
         <BusStop
-          onClick={this.onClickBusStop}
+          onClick={this.onClick('bus-stop')}
           key={i}
           position={position}
           color={color}

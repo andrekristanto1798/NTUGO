@@ -3,7 +3,6 @@ import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import * as BUS_TYPE from '../constants/BusType';
 import { Icon } from 'react-native-elements';
-import BusDetail from '../components/BusDetail';
 
 export const defaultOption = [
   { name: BUS_TYPE.RED, icon: 'bus', color: 'red' },
@@ -12,9 +11,9 @@ export const defaultOption = [
 
 /**
  * To render the bus available options for the user
- * 
+ *
  * Requires `options`, `active`, `onSelect` props
- * 
+ *
  * <Optional> `children` to be rendered in the right container
  */
 export default class BusSelectionFilter extends Component {
@@ -22,7 +21,6 @@ export default class BusSelectionFilter extends Component {
     options: PropTypes.array.isRequired,
     active: PropTypes.string.isRequired,
     onSelect: PropTypes.func.isRequired,
-    children: PropTypes.children
   };
 
   constructor(props) {
@@ -71,7 +69,7 @@ export default class BusSelectionFilter extends Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.buttonContainer}>{this.renderSelectionView()}</View>
-        <BusDetail />
+        {!!this.props.children && <View style={styles.detailContainer}>{this.props.children}</View>}
       </View>
     );
   }
@@ -101,6 +99,8 @@ const styles = StyleSheet.create({
     flexGrow: 0,
     flexShrink: 0,
     flexBasis: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonContainer: {
     display: 'flex',
@@ -109,5 +109,14 @@ const styles = StyleSheet.create({
     flexGrow: 0,
     flexShrink: 0,
     flexBasis: 'auto',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  detailContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    borderLeftWidth: 0.5,
+    borderLeftColor: '#d6d7da',
   },
 });
