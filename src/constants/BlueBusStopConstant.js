@@ -15,74 +15,74 @@ const OPP_HALL_TAMARIND = {
 };
 
 const EDGE_OPP_LWN_OPP_HALL_3 = {
-  start: 'OPP_LWN',
-  end: 'OPP_HALL_3',
+  start: OPP_LWN,
+  end: OPP_HALL_3,
   distance: 400
 }
 
 const EDGE_OPP_HALL_3_OPP_HALL_14 = {
-  start: 'OPP_HALL_3',
-  end: 'OPP_HALL_14',
+  start: OPP_HALL_3,
+  end: OPP_HALL_14,
   distance: 400
 }
 
 const EDGE_OPP_HALL_14_OPP_HALL_TAMARIND = {
-  start: 'OPP_HALL_14',
-  end: 'OPP_HALL_TAMARIND',
+  start: OPP_HALL_14,
+  end: OPP_HALL_TAMARIND,
   distance: 350
 }
 
 const EDGE_OPP_HALL_TAMARIND_OPP_HALL_10_11 = {
-  start: 'OPP_HALL_TAMARIND',
-  end: 'OPP_HALL_10_11',
+  start: OPP_HALL_TAMARIND,
+  end: OPP_HALL_10_11,
   distance: 500
 }
 
 const EDGE_OPP_HALL_10_11_HALL_8 = {
-  start: 'OPP_HALL_10_11',
-  end: 'HALL_8',
+  start: OPP_HALL_10_11,
+  end: OPP_HALL_8,
   distance: 550
 }
 
 const EDGE_OPP_HALL_8_OPP_HALL_2 = {
-  start: 'OPP_HALL_8',
-  end: 'OPP_HALL_2',
+  start: OPP_HALL_8,
+  end: OPP_HALL_2,
   distance: 450
 }
 
 const EDGE_OPP_HALL_2_OPP_HALL_4 = {
-  start: 'OPP_HALL_2',
-  end: 'OPP_HALL_4',
+  start: OPP_HALL_2,
+  end: OPP_HALL_4,
   distance: 750
 }
 
 const EDGE_OPP_HALL_4_OPP_INNOV_CENTRE = {
-  start: 'OPP_HALL_4',
-  end: 'OPP_INNOV_CENTRE',
+  start: OPP_HALL_4,
+  end: OPP_INNOV_CENTRE,
   distance: 400
 }
 
 const EDGE_OPP_INNOV_CENTRE_OPP_SPMS = {
-  start: 'OPP_INNOV_CENTRE',
-  end: 'OPP_SPMS',
+  start: OPP_INNOV_CENTRE,
+  end: OPP_SPMS,
   distance: 500
 }
 
 const EDGE_OPP_SPMS_OPP_WKWSCI = {
-  start: 'OPP_SPMS',
-  end: 'OPP_WKWSCI',
+  start: OPP_SPMS,
+  end: OPP_WKWSCI,
   distance: 350
 }
 
 const EDGE_OPP_WKWSCI_OPP_CEE = {
-  start: 'OPP_WKWSCI',
-  end: 'OPP_CEE',
+  start: OPP_WKWSCI,
+  end: OPP_CEE,
   distance: 500
 }
 
 const EDGE_OPP_CEE_OPP_LWN = {
-  start: 'OPP_CEE',
-  end: 'OPP_LWN',
+  start: OPP_CEE,
+  end: OPP_LWN,
   distance: 400
 }
 
