@@ -10,7 +10,7 @@ export const NTUGO_ICON = {
 
 /**
  * Currently this component is to wrap the Marker with Icon component
- * 
+ *
  * Support only `Bus` and `BusStop` icon for the moment
  */
 export default class NTUGOMarker extends Component {
@@ -36,7 +36,14 @@ export default class NTUGOMarker extends Component {
   render() {
     const { color, position, icon, bearing = 0, size = 10, opacity = 0.6 } = this.props;
     return (
-      <Marker coordinate={position} rotation={bearing} onPress={this.onPress} opacity={opacity}>
+      <Marker
+        tracksViewChanges={false}
+        tracksInfoWindowChanges={false}
+        coordinate={position}
+        rotation={bearing}
+        onPress={this.onPress}
+        opacity={opacity}
+      >
         <Icon type="font-awesome" name={icon} color={color} size={size} />
       </Marker>
     );

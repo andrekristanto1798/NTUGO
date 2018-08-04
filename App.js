@@ -14,6 +14,7 @@ import BLUE_BUS_ROUTE from './src/constants/BlueBusRoute';
 import * as BUS_TYPE from './src/constants/BusType';
 //Import API
 import getAllBusData from './src/api/BusAPI';
+import { getNextTwoBus } from './src/api/DistanceAPI';
 
 //To ignore the Remote debugger warning
 console.ignoredYellowBox = ['Remote debugger'];
@@ -62,8 +63,15 @@ export default class App extends React.Component {
     if (type === 'bus-stop') {
       //yes: Do get the data from manager and pass it to the busDetail state
       //which later on will be rendered inside `BusDetail` Component
+      var vehicles = markerType === 'blue' ? this.state.blueBusList : this.state.redBusList;
+      var busType = markerType;
+      var busStop = {
+        name: title,
+        position,
+      };
+      const timeList = getNextTwoBus(vehicles, busStop, busType);
       this.setState({
-        busDetail: { busStopName: title, busType: markerType },
+        busDetail: { busStopName: title, busType: markerType, timeList },
       });
     } else if (type === 'bus') {
       //yes: Do Nothing
@@ -102,6 +110,7 @@ export default class App extends React.Component {
         key="bus-marker"
         data={{ busStop, bus }}
         color={busColor}
+        active={this.state.busDetail && this.state.busDetail.busStopName}
       />,
       <BusRoute key="bus-route" coordinates={busRoute} color={routeColor} />,
     ];

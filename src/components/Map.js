@@ -4,15 +4,15 @@ import { MapView } from 'expo';
 
 // Default region for NTU
 const defaultRegion = {
-  latitude: 1.348429306314554,
-  latitudeDelta: 0.027844680407943523,
-  longitude: 103.68314763531089,
-  longitudeDelta: 0.014920793473734761,
+  latitude: 1.3481125818429907,
+  latitudeDelta: 0.017689970239689323,
+  longitude: 103.68311846628785,
+  longitudeDelta: 0.011774562299237346,
 };
 
 /**
  * To render MapView in `react-native-maps` using `expo` wrapper
- * 
+ *
  * Only accept `children` as prop and ignore another `prop`
  */
 export default class Map extends React.Component {
@@ -22,7 +22,11 @@ export default class Map extends React.Component {
         showsPointsOfInterest={false}
         onRegionChange={this.onRegionChange}
         style={styles.map}
-        initialRegion={defaultRegion}
+        region={defaultRegion}
+        scrollEnabled={false}
+        pitchEnabled={false}
+        rotateEnabled={false}
+        moveOnMarkerPress={false}
       >
         {this.props.children}
       </MapView>
