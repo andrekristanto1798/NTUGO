@@ -1,40 +1,7 @@
 import { BLUE_BUS_STOP_LIST, BLUE_EDGE_LIST } from '../constants/BlueBusStopConstant';
 import { RED_BUS_STOP_LIST, RED_EDGE_LIST } from '../constants/RedBusStopConstant';
 
-const BASE_URL = 'https://maps.googleapis.com/maps/api/distancematrix';
-const FORMAT_JSON_AND_UNIT = '/json?units=imperial';
-const API_KEY = '&key=AIzaSyAwKBu8x9waeq4bmqh_JB-EVxWn5oIsZrQ';
-const ORIGIN = '&origins=';
-const DESTINATION = '&destinations=';
-const GET = 'get';
-
-async function getEstimatedTime(busStop, busPosition) {
-  let finalURL =
-    BASE_URL +
-    FORMAT_JSON_AND_UNIT +
-    ORIGIN +
-    busPosition.position.latitude +
-    ',' +
-    busPosition.position.longitude +
-    DESTINATION +
-    busStop.position.latitude +
-    ',' +
-    busStop.position.longitude +
-    API_KEY;
-  const request = {
-    method: GET,
-  };
-  return fetch(finalURL, request)
-    .then(response => response.json())
-    .then(response => response.rows[0].elements[0].duration.text)
-    .catch(error => console.log(error));
-}
-
-const getDuration = async (busStop, busPosition) => {
-  duration = await getEstimatedTime(busStop, busPosition);
-  return duration;
-};
-
+// Get distance between two points
 function distance(lat1, lon1, lat2, lon2) {
   var p = 0.017453292519943295; // Math.PI / 180
   var c = Math.cos;
@@ -46,18 +13,12 @@ function distance(lat1, lon1, lat2, lon2) {
 /**
  * Finds the closest stop, returns the bus stop object
  */
-function findClosestBusStop(lat, lon, busType) {
-  let minDistance, closest;
-  const STOPS = busType === 'blue' ? BLUE_BUS_STOP_LIST : RED_BUS_STOP_LIST;
-  for (let i = 0; i < STOPS.length; i++) {
-    let busstop = STOPS[i];
-    currDistance = distance(lat, lon, busstop.position.latitude, busstop.position.longitude);
-    if (currDistance < minDistance || !minDistance) {
-      minDistance = currDistance;
-      closest = busstop;
-    }
+function findClosestBusStop(bus, busType) {
+  const EDGES = busType === 'blue' ? BLUE_EDGE_LIST : RED_EDGE_LIST;
+  for (let i = 0; i < EDGES.length; i++) {
+    if (EDGES[i].edge_id === bus.edge_id)
+        return EDGES[i].end;
   }
-  return closest;
 }
 
 /**
@@ -67,6 +28,9 @@ function findDistanceBetweenBusStops(origin, destination, busType) {
   const EDGE_LIST = busType === 'blue' ? BLUE_EDGE_LIST : RED_EDGE_LIST;
   let i = 0;
   let n = EDGE_LIST.length;
+  if (origin === destination)
+    return 0
+
   while (true) {
     if (EDGE_LIST[i % n].start.name === origin.name) {
       break;
@@ -95,9 +59,9 @@ function findDistanceBetweenBusStops(origin, destination, busType) {
  * @returns {Number} the unit time in hour
  */
 function estimateArrivalTime(bus, busStop, busType) {
-  let closestStop = findClosestBusStop(bus.position.latitude, bus.position.longitude, busType);
+  let closestStop = findClosestBusStop(bus, busType);
   let distance = findDistanceBetweenBusStops(closestStop, busStop, busType);
-  let estimatedTime = distance / 1000 / bus.speed;
+  let estimatedTime = distance / 1000 / bus.avg_speed;
   return parseFloat((estimatedTime * 60).toPrecision(3));
 }
 

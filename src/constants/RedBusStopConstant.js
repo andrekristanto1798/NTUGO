@@ -140,85 +140,99 @@ const MOCK_RED_BUS_3 = {
 const EDGE_HALL_12_LWN = {
   start: HALL_12,
   end: LWN,
-  distance: 670
+  distance: 670,
+  edge_id: 386653
 }
 
 const EDGE_LWN_CEE = {
   start: LWN,
   end: SBS,
-  distance: 350
+  distance: 350,
+  edge_id: 386619
 }
 
 const EDGE_CEE_WKW = {
   start: SBS,
   end: WKW,
-  distance: 500
+  distance: 500,
+  edge_id: 386620
 }
 
 const EDGE_WKW_HALL_7 = {
   start: WKW,
   end: HALL_7,
-  distance: 400
+  distance: 400,
+  edge_id: 386621
 }
 
 const EDGE_HALL_7_INNOVATION_CENTRE = {
   start: HALL_7,
   end: INNOVATION_CENTRE,
-  distance: 500
+  distance: 500,
+  edge_id: 386622
 }
 
 const EDGE_INNOVATION_CENTRE_HALL_4 = {
   start: INNOVATION_CENTRE,
   end: HALL_4,
-  distance: 450
+  distance: 450,
+  edge_id: 386623
 }
 
 const EDGE_HALL_4_HALL_1 = {
   start: HALL_4,
   end: HALL_1,
-  distance: 300
+  distance: 300,
+  edge_id: 386624
 }
 
 const EDGE_HALL_1_CANTEEN_2 = {
   start: HALL_1,
   end: CANTEEN_2,
- distance: 280
+  distance: 280,
+  edge_id: 386625
 }
 
 const EDGE_CANTEEN_2_HALL_9 = {
   start: CANTEEN_2,
   end: HALL_9,
-  distance: 550
+  distance: 550,
+  edge_id: 386626
 }
 
 const EDGE_HALL_9_HALL_10 = {
   start: HALL_9,
   end: HALL_10,
-  distance: 350
+  distance: 350,
+  edge_id: 386792
 }
 
 const EDGE_HALL_10_HALL_11 = {
   start: HALL_10,
   end: HALL_11,
-  distance: 400
+  distance: 400,
+  edge_id: 386793
 }
 
 const EDGE_HALL_11_TAMARIND_HALL = {
   start: HALL_11,
   end: TAMARIND_HALL,
-  distance: 550
+  distance: 550,
+  edge_id: 386794
 }
 
 const EDGE_TAMARIND_HALL_HALL_12 = {
   start: TAMARIND_HALL,
   end: HALL_12,
-  distance: 210
+  distance: 210,
+  edge_id: 386795
 }
 
 export const RED_BUS_LIST = [MOCK_RED_BUS_1, MOCK_RED_BUS_2, MOCK_RED_BUS_3];
 export const RED_BUS_STOP_LIST = [
   HALL_12,
   LWN,
+  CEE,
   SBS,
   WKW,
   HALL_7,
