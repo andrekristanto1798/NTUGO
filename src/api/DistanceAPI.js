@@ -14,14 +14,11 @@ function distance(lat1, lon1, lat2, lon2) {
  * Finds the closest stop, returns the bus stop object
  */
 function findClosestBusStop(bus, busType) {
-  let closest, currEdge;
   const EDGES = busType === 'blue' ? BLUE_EDGE_LIST : RED_EDGE_LIST;
   for (let i = 0; i < EDGES.length; i++) {
-    if (EDGES[i].edge_id === bus.projection.edge_id)
-        currEdge = EDGES[i];
+    if (EDGES[i].edge_id === bus.edge_id)
+        return EDGES[i].end;
   }
-  closest = currEdge.end;
-  return closest;
 }
 
 /**
@@ -62,9 +59,9 @@ function findDistanceBetweenBusStops(origin, destination, busType) {
  * @returns {Number} the unit time in hour
  */
 function estimateArrivalTime(bus, busStop, busType) {
-  let closestStop = findClosestBusStop(bus.position.latitude, bus.position.longitude, busType);
+  let closestStop = findClosestBusStop(bus, busType);
   let distance = findDistanceBetweenBusStops(closestStop, busStop, busType);
-  let estimatedTime = distance / 1000 / bus.speed;
+  let estimatedTime = distance / 1000 / bus.avg_speed;
   return parseFloat((estimatedTime * 60).toPrecision(3));
 }
 
