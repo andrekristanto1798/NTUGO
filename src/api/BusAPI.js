@@ -33,8 +33,16 @@ const doGetBusDataAPI = async type => {
   const { vehicles = [] } = data;
   if (vehicles.length <= 0) return [];
   return vehicles.reduce((acc, data, i) => {
-    const { bearing, lat, lon, speed } = data;
-    const tempBus = { bearing, position: { latitude: parseFloat(lat, 7), longitude: parseFloat(lon, 7) }, speed };
+    const { bearing, lat, lon, speed, projection, stats } = data;
+    const { edge_id } = projection;
+    const { avg_speed } = stats;
+    const tempBus = {
+      bearing,
+      position: { latitude: parseFloat(lat, 7), longitude: parseFloat(lon, 7) },
+      speed,
+      edge_id,
+      avg_speed,
+    };
     return [...acc, tempBus];
   }, []);
 };

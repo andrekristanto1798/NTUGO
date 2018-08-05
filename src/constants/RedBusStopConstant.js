@@ -3,7 +3,7 @@ const HALL_12 = {
     latitude: 1.351932,
     longitude: 103.680606,
   },
-  name: 'Hall 12 Bus stop',
+  name: 'Hall 12',
 };
 
 const LWN = {
@@ -11,15 +11,7 @@ const LWN = {
     latitude: 1.347973,
     longitude: 103.680514,
   },
-  name: 'Outside Canteen A & Lee Wee Nam Library / Opposite NIE',
-};
-
-const CEE = {
-  position: {
-    latitude: 1.34623,
-    longitude: 103.678526,
-  },
-  name: 'Outside School of Civil & Environmental Engineering (N1)',
+  name: 'Canteen A & Lee Wee Nam Library / Opposite NIE',
 };
 
 const SBS = {
@@ -27,7 +19,7 @@ const SBS = {
     latitude: 1.344602,
     longitude: 103.678669,
   },
-  name: 'Outside School of Biological Sciences',
+  name: 'School of Biological Sciences',
 };
 
 const WKW = {
@@ -35,7 +27,7 @@ const WKW = {
     latitude: 1.342081,
     longitude: 103.67923,
   },
-  name: 'Outside Wee Kim Wee School of Communications & Information (S1)',
+  name: 'Wee Kim Wee School of Communications & Information (S1)',
 };
 
 const HALL_7 = {
@@ -43,7 +35,7 @@ const HALL_7 = {
     latitude: 1.339987,
     longitude: 103.680895,
   },
-  name: 'Outside Hall of Residence 7',
+  name: 'Hall of Residence 7',
 };
 
 const INNOVATION_CENTRE = {
@@ -51,7 +43,7 @@ const INNOVATION_CENTRE = {
     latitude: 1.342293,
     longitude: 103.683725,
   },
-  name: 'Outside Innovation Centre, Canteen B & Chinese Heritage Centre',
+  name: 'Innovation Centre, Canteen B & Chinese Heritage Centre',
 };
 
 const HALL_4 = {
@@ -59,7 +51,7 @@ const HALL_4 = {
     latitude: 1.34384,
     longitude: 103.686866,
   },
-  name: 'Outside Hall of Residence 4',
+  name: 'Hall of Residence 4',
 };
 
 const HALL_1 = {
@@ -67,7 +59,7 @@ const HALL_1 = {
     latitude: 1.345696,
     longitude: 103.68781,
   },
-  name: 'Outside Hall of Residence 1',
+  name: 'Hall of Residence 1',
 };
 
 const CANTEEN_2 = {
@@ -75,7 +67,7 @@ const CANTEEN_2 = {
     latitude: 1.349064,
     longitude: 103.685385,
   },
-  name: 'Outside Canteen 2',
+  name: 'Canteen 2',
 };
 
 const HALL_9 = {
@@ -83,7 +75,7 @@ const HALL_9 = {
     latitude: 1.351526,
     longitude: 103.685696,
   },
-  name: 'Opposite Nanyang Heights / Beside Hall of Residence 9',
+  name: 'Opposite Nanyang Heights / Hall of Residence 9',
 };
 
 const HALL_10 = {
@@ -91,7 +83,7 @@ const HALL_10 = {
     latitude: 1.354343,
     longitude: 103.686858,
   },
-  name: 'Outside Hall of Residence 10 & 11',
+  name: 'Hall of Residence 10 & 11',
 };
 
 const HALL_11 = {
@@ -99,7 +91,7 @@ const HALL_11 = {
     latitude: 1.355866,
     longitude: 103.68611,
   },
-  name: 'Outside Graduate Hall / Hall of Residence 11',
+  name: 'Graduate Hall / Hall of Residence 11',
 };
 
 const TAMARIND_HALL = {
@@ -144,14 +136,14 @@ const EDGE_HALL_12_LWN = {
   edge_id: 386653
 }
 
-const EDGE_LWN_CEE = {
+const EDGE_LWN_SBS = {
   start: LWN,
   end: SBS,
   distance: 350,
   edge_id: 386619
 }
 
-const EDGE_CEE_WKW = {
+const EDGE_SBS_WKW = {
   start: SBS,
   end: WKW,
   distance: 500,
@@ -232,7 +224,6 @@ export const RED_BUS_LIST = [MOCK_RED_BUS_1, MOCK_RED_BUS_2, MOCK_RED_BUS_3];
 export const RED_BUS_STOP_LIST = [
   HALL_12,
   LWN,
-  CEE,
   SBS,
   WKW,
   HALL_7,
@@ -247,8 +238,8 @@ export const RED_BUS_STOP_LIST = [
 ];
 export const RED_EDGE_LIST = [
   EDGE_HALL_12_LWN,
-  EDGE_LWN_CEE,
-  EDGE_CEE_WKW,
+  EDGE_LWN_SBS,
+  EDGE_SBS_WKW,
   EDGE_WKW_HALL_7,
   EDGE_HALL_7_INNOVATION_CENTRE,
   EDGE_INNOVATION_CENTRE_HALL_4,
