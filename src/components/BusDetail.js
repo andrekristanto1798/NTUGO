@@ -3,7 +3,9 @@ import { Text, View, StyleSheet, Dimensions } from 'react-native';
 
 export default class BusDetail extends Component {
   renderTime = time => {
-    if (time === 0 || time) {
+    if (time === 0) {
+      return 'Arriving';
+    } else if (time) {
       return `${Math.floor(time) + 1} min`;
     } else {
       return 'N.A.';
@@ -15,18 +17,15 @@ export default class BusDetail extends Component {
     return (
       <View style={[styles.detailContainer]}>
         <View style={[styles.row]}>
-          <View style={[styles.box, styles.header]}>
+          <View style={[styles.box]}>
             <Text style={styles.title}> {busStopName} </Text>
           </View>
         </View>
-        <View style={[styles.row]}>
-          <View style={[styles.box, styles.box2]}>
-            <Text style={[styles.text]}> {busType} </Text>
+        <View style={[styles.row, styles.busTimeBorder]}>
+          <View style={[styles.box]}>
+            <Text style={[styles.text, styles.highlight]}> {this.renderTime(timeList[0])}</Text>
           </View>
           <View style={[styles.box]}>
-            <Text style={[styles.text]}> {this.renderTime(timeList[0])}</Text>
-          </View>
-          <View style={[styles.box, styles.box3]}>
             <Text style={[styles.text]}> {this.renderTime(timeList[1])}</Text>
           </View>
         </View>
@@ -41,8 +40,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 10,
     flex: 1,
-    // borderLeftWidth: 0.5,
-    borderLeftColor: '#d6d7da',
   },
   row: {
     flex: 1,
@@ -53,30 +50,26 @@ const styles = StyleSheet.create({
   box: {
     flex: 1,
     height: '100%',
-    backgroundColor: '#31659C',
     justifyContent: 'space-evenly',
     alignItems: 'center',
   },
-  box2: {
-    backgroundColor: '#639ACE',
-  },
-  box3: {
-    backgroundColor: '#4A79A5',
-  },
-  toggler: {
-    height: 10,
-    backgroundColor: '#333',
-    width: '100%',
-  },
   text: {
     textAlign: 'center',
-    color: 'white',
-    alignItems: 'center',
-    fontSize: 18,
+    color: 'gray',
+    fontWeight: '400',
+    fontSize: 12,
   },
   title: {
-    textAlign: 'center',
-    fontSize: 20,
-    color: 'white',
+    textAlign: 'left',
+    fontSize: 15,
+    color: 'black',
+  },
+  highlight: {
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  busTimeBorder: {
+    borderTopWidth: 0.5,
+    borderTopColor: '#d6d7da',
   },
 });

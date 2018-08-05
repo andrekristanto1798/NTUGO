@@ -27,7 +27,7 @@ const WKW = {
     latitude: 1.342081,
     longitude: 103.67923,
   },
-  name: 'Wee Kim Wee School of Communications & Information (S1)',
+  name: 'Wee Kim Wee School',
 };
 
 const HALL_7 = {

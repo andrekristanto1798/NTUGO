@@ -27,6 +27,7 @@ export default class Map extends React.Component {
         pitchEnabled={false}
         rotateEnabled={false}
         moveOnMarkerPress={false}
+        zoomEnabled={false}
       >
         {this.props.children}
       </MapView>

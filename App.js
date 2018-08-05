@@ -40,6 +40,8 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
+    //Get initial data
+    this.retrieveDataFromServer()
     //Do get data from the server every 5s
     const timeToRetrieveData = 5000;
     setInterval(this.retrieveDataFromServer, timeToRetrieveData);

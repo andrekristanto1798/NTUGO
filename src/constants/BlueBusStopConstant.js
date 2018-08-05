@@ -10,7 +10,7 @@ const OPP_LWN = { name: 'NIE, Opp. LWN Library', position: { latitude: 1.347969,
 const OPP_HALL_3 = { name: 'Opp. Hall 3 & 16', position: { latitude: 1.350485, longitude: 103.68038 } };
 const OPP_HALL_14 = { name: 'Opp. Hall 14 & 15', position: { latitude: 1.353155, longitude: 103.681656 } };
 const OPP_HALL_TAMARIND = {
-  name: 'Opp Nanyang Crescent Hall',
+  name: 'Opp. Nanyang Crescent Hall',
   position: { latitude: 1.354785, longitude: 103.683856 },
 };
 

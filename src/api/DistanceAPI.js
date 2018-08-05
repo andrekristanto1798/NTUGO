@@ -24,7 +24,6 @@ function findClosestBusStop(bus, busType) {
  * Given the origin and destination, find the distance between the two stops travelled by the campus shuttle type.
  */
 function findDistanceBetweenBusStops(origin, destination, busType) {
-  console.log(!origin || !destination || !busType);
   if (!origin || !destination || !busType) return null;
   const EDGE_LIST = busType === 'blue' ? BLUE_EDGE_LIST : RED_EDGE_LIST;
   let totalDistance = 0;
@@ -38,7 +37,7 @@ function findDistanceBetweenBusStops(origin, destination, busType) {
     i++;
   }
   while (true) {
-    if (EDGE_LIST[i % n].end.name === destination.name) {
+    if (EDGE_LIST[i % n].start.name === destination.name) {
       break;
     }
     totalDistance += EDGE_LIST[i % n].distance;
@@ -58,7 +57,7 @@ function findDistanceBetweenBusStops(origin, destination, busType) {
 function estimateArrivalTime(bus, busStop, busType) {
   let closestStop = findClosestBusStop(bus, busType);
   let distance = findDistanceBetweenBusStops(closestStop, busStop, busType);
-  let estimatedTime = distance / 1000 / bus.avg_speed;
+  let estimatedTime = distance / 1000 / bus.speed;
   return parseFloat((estimatedTime * 60).toPrecision(3));
 }
 
