@@ -1,6 +1,22 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
-    "orientation": "portrait"
+    "orientation": "portrait",
+    "name": "NTU Loops",
+    "description": "NTU Bus Monitoring",
+    "ios": {
+      "config": {
+        "googleMapsApiKey": "AIzaSyAwKBu8x9waeq4bmqh_JB-EVxWn5oIsZrQ"
+      },
+      "supportsTablet": true
+    },
+    "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAwKBu8x9waeq4bmqh_JB-EVxWn5oIsZrQ"
+        }
+      },
+      "package": "com.penampungandev.ntuloops"
+    }
   }
 }
