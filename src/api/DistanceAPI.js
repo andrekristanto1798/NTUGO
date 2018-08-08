@@ -1,5 +1,5 @@
-import { BLUE_BUS_STOP_LIST, BLUE_EDGE_LIST } from '../constants/BlueBusStopConstant';
-import { RED_BUS_STOP_LIST, RED_EDGE_LIST } from '../constants/RedBusStopConstant';
+import { BLUE_EDGE_LIST } from '../constants/BlueBusStopConstant';
+import { RED_EDGE_LIST } from '../constants/RedBusStopConstant';
 
 // Get distance between two points
 function distance(lat1, lon1, lat2, lon2) {
@@ -22,6 +22,7 @@ function findClosestBusStop(bus, busType) {
 
 /**
  * Given the origin and destination, find the distance between the two stops travelled by the campus shuttle type.
+ * Returns the distance and the no of stops passed as an array.
  */
 function findDistanceBetweenBusStops(origin, destination, busType) {
   if (!origin || !destination || !busType) return null;
@@ -29,21 +30,31 @@ function findDistanceBetweenBusStops(origin, destination, busType) {
   let totalDistance = 0;
   let i = 0;
   let n = EDGE_LIST.length;
+  // return 0 if bus is in the final edge
   if (origin.name === destination.name) return 0;
+
+  // find the initial edge
   while (true) {
     if (EDGE_LIST[i % n].start.name === origin.name) {
+      let start = i;
       break;
     }
     i++;
   }
+
+  // find the terminating edge
   while (true) {
     if (EDGE_LIST[i % n].start.name === destination.name) {
+      let end = i;
       break;
     }
     totalDistance += EDGE_LIST[i % n].distance;
     i++;
   }
-  return totalDistance;
+  return {
+    'distance': totalDistance,
+    'noOfStops': (end - start) % n
+  };
 }
 
 /**
@@ -55,9 +66,19 @@ function findDistanceBetweenBusStops(origin, destination, busType) {
  * @returns {Number} the unit time in hour
  */
 function estimateArrivalTime(bus, busStop, busType) {
+  // find the stop the bus is heading to
   let closestStop = findClosestBusStop(bus, busType);
-  let distance = findDistanceBetweenBusStops(closestStop, busStop, busType);
-  let estimatedTime = distance / 1000 / bus.speed;
+
+  // find distance from the bus to that stop (km)
+  let initialDistance = distance(bus.lat, bus.lon, closestStop.position.latitude, closestStop.position.longitude)
+
+  // find distance to the destination stop then add to the initial distance
+  let betweenStops = findDistanceBetweenBusStops(closestStop, busStop, busType);
+  let distance = betweenStops.distance + initialDistance;
+  let noOfStopsPassed = betweenStops.noOfStops;
+
+  // calculate estimated time. Adding 30 for buffer each stops passed (dynamic according to no of stops passed)
+  let estimatedTime = (distance / 1000 / bus.avg_speed) + 30 * noOfStopsPassed;
   return parseFloat((estimatedTime * 60).toPrecision(3));
 }
 
