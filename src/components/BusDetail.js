@@ -12,25 +12,37 @@ export default class BusDetail extends Component {
     }
   };
 
-  render() {
+  renderBody = () => {
     const { busStopName, busType, timeList } = this.props;
-    return (
-      <View style={[styles.detailContainer]}>
-        <View style={[styles.row]}>
-          <View style={[styles.box]}>
-            <Text style={styles.title}> {busStopName} </Text>
+    if (!busStopName || !busType || !timeList) {
+      return (
+        <Text>
+          Tap the <Text style={{ fontWeight: 'bold' }}>Bus Stop</Text> to view the ETA
+        </Text>
+      );
+    } else {
+      return (
+        <View>
+          <View style={[styles.row]}>
+            <View style={[styles.box]}>
+              <Text style={styles.title}> {busStopName} </Text>
+            </View>
+          </View>
+          <View style={[styles.row, styles.busTimeBorder]}>
+            <View style={[styles.box]}>
+              <Text style={[styles.text, styles.highlight]}> {this.renderTime(timeList[0])}</Text>
+            </View>
+            <View style={[styles.box]}>
+              <Text style={[styles.text]}> {this.renderTime(timeList[1])}</Text>
+            </View>
           </View>
         </View>
-        <View style={[styles.row, styles.busTimeBorder]}>
-          <View style={[styles.box]}>
-            <Text style={[styles.text, styles.highlight]}> {this.renderTime(timeList[0])}</Text>
-          </View>
-          <View style={[styles.box]}>
-            <Text style={[styles.text]}> {this.renderTime(timeList[1])}</Text>
-          </View>
-        </View>
-      </View>
-    );
+      );
+    }
+  };
+
+  render() {
+    return <View style={[styles.detailContainer]}>{this.renderBody()}</View>;
   }
 }
 
@@ -38,6 +50,8 @@ const styles = StyleSheet.create({
   detailContainer: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     padding: 10,
     flex: 1,
   },

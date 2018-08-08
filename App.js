@@ -41,7 +41,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     //Get initial data
-    this.retrieveDataFromServer()
+    this.retrieveDataFromServer();
     //Do get data from the server every 5s
     const timeToRetrieveData = 5000;
     setInterval(this.retrieveDataFromServer, timeToRetrieveData);
@@ -124,7 +124,7 @@ export default class App extends React.Component {
       <View style={styles.mainContainer}>
         <Map>{this.renderBusBasedOnUserSelection()}</Map>
         <BusSelectionFilter options={defaultOption} active={userSelection} onSelect={this.onUserSelectBus}>
-          {busDetail && <BusDetail {...busDetail} />}
+          <BusDetail {...busDetail} />
         </BusSelectionFilter>
       </View>
     );
