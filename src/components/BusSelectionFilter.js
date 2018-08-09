@@ -47,7 +47,7 @@ export default class BusSelectionFilter extends Component {
       return (
         <TouchableOpacity key={i} style={buttonStyle} onPress={this.onPressSelection(name)}>
           <Icon type="font-awesome" name={icon} color={color} />
-          <Text>{name}</Text>
+          <Text style={styles.buttonText}>{name}</Text>
         </TouchableOpacity>
       );
     });
@@ -118,5 +118,8 @@ const styles = StyleSheet.create({
     flex: 1,
     borderLeftWidth: 0.5,
     borderLeftColor: '#d6d7da',
+  },
+  buttonText: {
+    marginLeft: 5,
   },
 });

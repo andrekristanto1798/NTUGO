@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Dimensions } from 'react-native';
 
 export default class BusDetail extends Component {
   renderTime = time => {
-    if (time === 0) {
+    if (time < 1) {
       return 'Arriving';
     } else if (time) {
       return `${Math.floor(time) + 1} min`;
@@ -21,23 +21,21 @@ export default class BusDetail extends Component {
         </Text>
       );
     } else {
-      return (
-        <View>
-          <View style={[styles.row]}>
-            <View style={[styles.box]}>
-              <Text style={styles.title}> {busStopName} </Text>
-            </View>
+      return [
+        <View style={[styles.row]} key="title">
+          <View style={[styles.box]}>
+            <Text style={styles.title}> {busStopName} </Text>
           </View>
-          <View style={[styles.row, styles.busTimeBorder]}>
-            <View style={[styles.box]}>
-              <Text style={[styles.text, styles.highlight]}> {this.renderTime(timeList[0])}</Text>
-            </View>
-            <View style={[styles.box]}>
-              <Text style={[styles.text]}> {this.renderTime(timeList[1])}</Text>
-            </View>
+        </View>,
+        <View style={[styles.row, styles.busTimeBorder]} key="body">
+          <View style={[styles.box]}>
+            <Text style={[styles.text, styles.highlight]}> {this.renderTime(timeList[0])}</Text>
           </View>
-        </View>
-      );
+          <View style={[styles.box]}>
+            <Text style={[styles.text]}> {this.renderTime(timeList[1])}</Text>
+          </View>
+        </View>,
+      ];
     }
   };
 
