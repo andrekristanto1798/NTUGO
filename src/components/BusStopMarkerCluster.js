@@ -11,9 +11,9 @@ import NTUGOMarker, { NTUGO_ICON } from './NTUGOMarker';
  *
  * Example: `color`, `opacity`, `size` which are used for customizing the `Icon` component inside the `Marker` component
  */
-export default class BusMarkerCluster extends React.PureComponent {
+export default class BusStopMarkerCluster extends React.PureComponent {
   static propTypes = {
-    bus: PropTypes.array,
+    busStop: PropTypes.array.isRequired,
     color: PropTypes.string.isRequired,
   };
 
@@ -22,21 +22,22 @@ export default class BusMarkerCluster extends React.PureComponent {
     onClick && onClick({ type, position, title });
   };
 
-  renderBus = ({ position, color, ...additionalProps }) => {
-    return <NTUGOMarker size={25} position={position} color={color} icon={NTUGO_ICON.BUS} {...additionalProps} />;
+  renderBusStop = ({ position, color, ...additionalProps }) => {
+    return <NTUGOMarker size={20} position={position} color={color} icon={NTUGO_ICON.BUS_STOP} {...additionalProps} />;
   };
 
   render() {
-    const { bus = [], color } = this.props;
-    const Bus = this.renderBus;
+    const { busStop, color, active = null } = this.props;
+    const BusStop = this.renderBusStop;
     return [
-      bus.map(({ position, bearing, speed, ...additionalProps }, i) => (
-        <Bus
-          onClick={this.onClick('bus')}
+      busStop.map(({ position, name, ...additionalProps }, i) => (
+        <BusStop
+          onClick={this.onClick('bus-stop')}
           key={i}
           position={position}
           color={color}
-          bearing={bearing - 45}
+          title={name}
+          opacity={active === name ? 1 : 0.3}
           {...additionalProps}
         />
       )),

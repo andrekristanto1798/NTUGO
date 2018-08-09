@@ -6,7 +6,7 @@ export default class BusDetail extends Component {
     if (time < 1) {
       return 'Arriving';
     } else if (time) {
-      return `${Math.floor(time) + 1} min`;
+      return Math.ceil(time) + ' min';
     } else {
       return 'N.A.';
     }

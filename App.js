@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 //Import component
 import Map from './src/components/Map';
 import BusMarkerCluster from './src/components/BusMarkerCluster';
+import BusStopMarkerCluster from './src/components/BusStopMarkerCluster';
 import BusRoute from './src/components/BusRoute';
 import BusSelectionFilter, { defaultOption } from './src/components/BusSelectionFilter';
 import BusDetail from './src/components/BusDetail';
@@ -21,10 +22,25 @@ console.ignoredYellowBox = ['Remote debugger'];
 
 export default class App extends React.Component {
   state = {
-    redBusList: [],
-    blueBusList: [],
     userSelection: BUS_TYPE.RED,
-    busDetail: null,
+    busStopDetail: null,
+    busStop: {
+      red: RED_BUS_STOP_LIST,
+      blue: BLUE_BUS_STOP_LIST,
+    },
+    bus: {
+      red: [],
+      blue: [],
+    },
+    busColor: 'red',
+    busRoute: {
+      red: RED_BUS_ROUTE,
+      blue: BLUE_BUS_ROUTE,
+    },
+    routeColor: {
+      red: BUS_TYPE.RGBA(255, 0, 0, 0.3),
+      blue: BUS_TYPE.RGBA(0, 0, 255, 0.3),
+    },
   };
 
   /**
@@ -34,8 +50,10 @@ export default class App extends React.Component {
   retrieveDataFromServer = async () => {
     const { parsedBlueBus, parsedRedBus } = await getAllBusData();
     this.setState({
-      blueBusList: parsedBlueBus,
-      redBusList: parsedRedBus,
+      bus: {
+        blue: parsedBlueBus,
+        red: parsedRedBus,
+      },
     });
   };
 
@@ -52,7 +70,16 @@ export default class App extends React.Component {
    * Getting the user selection data from BusSelectionFilter component
    */
   onUserSelectBus = busName => {
-    this.setState({ userSelection: busName });
+    const { userSelection } = this.state;
+    var busColor = 'red';
+    if (userSelection === busName) return;
+    if (busName === BUS_TYPE.RED) {
+      busColor = 'red';
+    }
+    if (busName === BUS_TYPE.BLUE) {
+      busColor = 'blue';
+    }
+    this.setState({ busColor, userSelection: busName });
   };
 
   /**
@@ -63,9 +90,9 @@ export default class App extends React.Component {
    */
   onClickMarker = markerType => ({ type, title, position }) => {
     if (type === 'bus-stop') {
-      //yes: Do get the data from manager and pass it to the busDetail state
+      //yes: Do get the data from manager and pass it to the busStopDetail state
       //which later on will be rendered inside `BusDetail` Component
-      var vehicles = markerType === 'blue' ? this.state.blueBusList : this.state.redBusList;
+      var vehicles = this.state.bus[this.state.busColor];
       var busType = markerType;
       var busStop = {
         name: title,
@@ -73,7 +100,7 @@ export default class App extends React.Component {
       };
       const timeList = getNextTwoBus(vehicles, busStop, busType);
       this.setState({
-        busDetail: { busStopName: title, busType: markerType, timeList },
+        busStopDetail: { busStopName: title, busType: markerType, timeList },
       });
     } else if (type === 'bus') {
       //yes: Do Nothing
@@ -82,49 +109,24 @@ export default class App extends React.Component {
     }
   };
 
-  renderBusBasedOnUserSelection = () => {
-    const { redBusList, blueBusList, userSelection } = this.state;
-    var busStop, bus, busColor, busRoute, routeColor;
-    switch (userSelection) {
-      case BUS_TYPE.RED:
-        busStop = RED_BUS_STOP_LIST;
-        bus = redBusList;
-        busColor = 'red';
-        busRoute = RED_BUS_ROUTE;
-        routeColor = BUS_TYPE.RGBA(255, 0, 0, 0.3);
-        break;
-      case BUS_TYPE.BLUE:
-        busStop = BLUE_BUS_STOP_LIST;
-        bus = blueBusList;
-        busColor = 'blue';
-        busRoute = BLUE_BUS_ROUTE;
-        routeColor = BUS_TYPE.RGBA(0, 0, 255, 0.3);
-        break;
-      default:
-        busStop = [];
-        bus = [];
-        busColor = 'green';
-        break;
-    }
-    return [
-      <BusMarkerCluster
-        onClick={this.onClickMarker(busColor)}
-        key="bus-marker"
-        data={{ busStop, bus }}
-        color={busColor}
-        active={this.state.busDetail && this.state.busDetail.busStopName}
-      />,
-      <BusRoute key="bus-route" coordinates={busRoute} color={routeColor} />,
-    ];
-  };
-
   render() {
-    const { busDetail, userSelection } = this.state;
+    const { busStopDetail, userSelection } = this.state;
+    const { bus, busStop, busColor, busRoute, routeColor } = this.state;
     return (
       <View style={styles.mainContainer}>
-        <Map>{this.renderBusBasedOnUserSelection()}</Map>
+        <Map>
+          <BusStopMarkerCluster
+            onClick={this.onClickMarker(busColor)}
+            key="bus-stop-marker"
+            busStop={busStop[busColor]}
+            color={busColor}
+            active={busStopDetail && busStopDetail.busStopName}
+          />
+          <BusMarkerCluster key="bus-marker" bus={bus[busColor]} color={busColor} />
+          <BusRoute key="bus-route" coordinates={busRoute[busColor]} color={routeColor[busColor]} />
+        </Map>
         <BusSelectionFilter options={defaultOption} active={userSelection} onSelect={this.onUserSelectBus}>
-          <BusDetail {...busDetail} />
+          <BusDetail {...busStopDetail} />
         </BusSelectionFilter>
       </View>
     );

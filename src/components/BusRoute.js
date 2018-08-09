@@ -5,7 +5,7 @@ import { RGBA } from '../constants/BusType';
 /**
  * To render the bus route using `Polyline` component provided by `react-native-maps`
  */
-export default class BusRoute extends Component {
+export default class BusRoute extends React.PureComponent {
   render() {
     const { coordinates = [], color = RGBA(255, 0, 0), width = 3, opacity = 0.1 } = this.props;
     return <Polyline coordinates={coordinates} strokeColor={color} strokeWidth={width} strokeOpacity={opacity} />;

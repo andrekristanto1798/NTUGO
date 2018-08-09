@@ -15,28 +15,26 @@ const defaultRegion = {
  *
  * Only accept `children` as prop and ignore another `prop`
  */
-export default class Map extends React.Component {
-  render() {
-    return (
-      <MapView
-        showsPointsOfInterest={false}
-        onRegionChange={this.onRegionChange}
-        style={styles.map}
-        region={defaultRegion}
-        scrollEnabled={false}
-        pitchEnabled={false}
-        rotateEnabled={false}
-        moveOnMarkerPress={false}
-        zoomEnabled={false}
-      >
-        {this.props.children}
-      </MapView>
-    );
-  }
-}
+const Map = ({ children }) => (
+  <MapView
+    showsPointsOfInterest={false}
+    onRegionChange={this.onRegionChange}
+    style={styles.map}
+    initialRegion={defaultRegion}
+    scrollEnabled={false}
+    pitchEnabled={false}
+    rotateEnabled={false}
+    moveOnMarkerPress={false}
+    zoomEnabled={false}
+  >
+    {children}
+  </MapView>
+);
 
 const styles = StyleSheet.create({
   map: {
     flex: 10,
   },
 });
+
+export default Map;

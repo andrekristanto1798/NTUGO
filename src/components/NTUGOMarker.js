@@ -13,7 +13,7 @@ export const NTUGO_ICON = {
  *
  * Support only `Bus` and `BusStop` icon for the moment
  */
-export default class NTUGOMarker extends Component {
+export default class NTUGOMarker extends React.PureComponent {
   static propTypes = {
     color: PropTypes.string.isRequired,
     position: PropTypes.object.isRequired,

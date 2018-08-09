@@ -16,10 +16,10 @@ export const defaultOption = [
  *
  * <Optional> `children` to be rendered in the right container
  */
-export default class BusSelectionFilter extends Component {
+export default class BusSelectionFilter extends React.PureComponent {
   static propTypes = {
     options: PropTypes.array.isRequired,
-    active: PropTypes.string.isRequired,
+    active: PropTypes.string,
     onSelect: PropTypes.func.isRequired,
   };
 
@@ -31,8 +31,7 @@ export default class BusSelectionFilter extends Component {
   }
 
   onPressSelection = name => () => {
-    const { active, onSelect } = this.props;
-    if (active === name) onSelect && onSelect(null);
+    const { onSelect } = this.props;
     onSelect && onSelect(name);
   };
 
@@ -40,14 +39,18 @@ export default class BusSelectionFilter extends Component {
     const { options, active } = this.props;
     return options.map((option, i) => {
       const { name, icon, color } = option;
-      var buttonStyle = selectionButton;
+      var buttonStyle = selectionButton,
+        textButtonStyle = [styles.buttonText, { color }];
+      iconColor = color;
       if (active === name) {
-        buttonStyle = { ...buttonStyle, backgroundColor: '#f1f1f1' };
+        buttonStyle = { ...buttonStyle, backgroundColor: color, borderColor: color };
+        textButtonStyle = [...textButtonStyle, { color: 'white' }];
+        iconColor = 'white';
       }
       return (
         <TouchableOpacity key={i} style={buttonStyle} onPress={this.onPressSelection(name)}>
-          <Icon type="font-awesome" name={icon} color={color} />
-          <Text style={styles.buttonText}>{name}</Text>
+          <Icon type="font-awesome" name={icon} color={iconColor} />
+          <Text style={textButtonStyle}>{name}</Text>
         </TouchableOpacity>
       );
     });
@@ -65,7 +68,6 @@ export default class BusSelectionFilter extends Component {
   }
 
   render() {
-    const { showSelectionView } = this.state;
     return (
       <View style={styles.mainContainer}>
         <View style={styles.buttonContainer}>{this.renderSelectionView()}</View>
@@ -121,5 +123,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     marginLeft: 5,
+    color: 'black',
   },
 });
