@@ -104,7 +104,7 @@ export function getNextTwoBus(vehicles, busStop, busType) {
     let time = estimateArrivalTime(vehicles[i], busStop, busType);
     timeList.push(time);
   }
-  timeList = timeList.sort();
+  timeList = timeList.sort((a, b) => a - b);
   timeList = timeList.slice(0, 2);
   return timeList;
 }
