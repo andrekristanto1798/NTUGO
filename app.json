@@ -1,6 +1,7 @@
 {
   "expo": {
     "sdkVersion": "27.0.0",
+    "icon": "./assets/splash.png",
     "orientation": "portrait",
     "name": "NTU Loops",
     "description": "NTU Bus Monitoring",
@@ -17,6 +18,11 @@
         }
       },
       "package": "com.penampungandev.ntuloops"
+    },
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#33666",
+      "resizeMode": "contain"
     }
   }
 }
