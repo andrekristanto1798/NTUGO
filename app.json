@@ -17,7 +17,8 @@
           "apiKey": "AIzaSyAwKBu8x9waeq4bmqh_JB-EVxWn5oIsZrQ"
         }
       },
-      "package": "com.penampungandev.ntuloops"
+      "package": "com.penampungandev.ntuloops",
+      "permissions": []
     },
     "splash": {
       "image": "./assets/splash.png",
