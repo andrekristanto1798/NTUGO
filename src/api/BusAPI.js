@@ -1,4 +1,5 @@
 import * as BUS_TYPE from '../constants/BusType';
+import { Alert } from 'react-native';
 
 const BASE_URL = 'https://baseride.com/routes/apigeo/routevariantvehicle';
 const FORMAT_JSON = '/?format=json';
@@ -7,6 +8,8 @@ const BLUE_PATH = '/44479';
 
 const GET = 'get';
 const POST = 'post';
+
+let alertIsOpen = false;
 
 async function fetchBusData(type) {
   var finalURL = BASE_URL;
@@ -25,7 +28,20 @@ async function fetchBusData(type) {
   };
   return fetch(finalURL, request)
     .then(response => response.json())
-    .catch(error => console.log(error));
+    .catch(error => {
+      if (!alertIsOpen) {
+        alertIsOpen = true;
+        Alert.alert('Network Error', error.toString(), [
+          {
+            text: 'OK',
+            onPress: () => {
+              alertIsOpen = false;
+            },
+          },
+        ]);
+      }
+      return {};
+    });
 }
 
 const doGetBusDataAPI = async type => {

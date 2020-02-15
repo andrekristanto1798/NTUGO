@@ -15,9 +15,16 @@ function getDistance(lat1, lon1, lat2, lon2) {
  */
 function findClosestBusStop(bus, busType) {
   const EDGES = busType === 'blue' ? BLUE_EDGE_LIST : RED_EDGE_LIST;
-  for (let i = 0; i < EDGES.length; i++) {
-    if (EDGES[i].edge_id === bus.edge_id) return EDGES[i].end;
-  }
+  const edgeDistanceList = EDGES.map(edge => ({
+    ...edge,
+    distance: getDistance(
+      bus.position.latitude,
+      bus.position.longitude,
+      edge.end.position.latitude,
+      edge.end.position.longitude
+    ),
+  }));
+  return edgeDistanceList.sort((e1, e2) => e1.distance - e2.distance)[0].end;
 }
 
 /**
