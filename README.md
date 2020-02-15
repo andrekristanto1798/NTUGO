@@ -1,6 +1,6 @@
-# NTUGO
+# NTU Loops
 
-NTUGO is built using `expo` application.
+NTU Loops is built using `expo` application.
 
 ## Requirement
 
@@ -9,8 +9,8 @@ NTUGO is built using `expo` application.
 ## Installation
 
 ```bash
-git clone https://github.com/andrekristanto1798/NTUGO
-cd NTUGO
+git clone https://github.com/andrekristanto1798/ntu-loops
+cd ntu-loops
 yarn
 ```
 
