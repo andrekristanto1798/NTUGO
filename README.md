@@ -1,21 +1,21 @@
 # NTUGO
 
-NTUGO is built using `react-native` application.
+NTUGO is built using `expo` application.
 
 ## Requirement
 
-- node `^8.0.0`
+- node `^12.0.0`
 
 ## Installation
 
 ```bash
 git clone https://github.com/andrekristanto1798/NTUGO
 cd NTUGO
-npm i
+yarn
 ```
 
 ## Running the project
 
 ```bash
-npm start
+yarn start
 ```

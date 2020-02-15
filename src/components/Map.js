@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { MapView } from 'expo';
+import { StyleSheet } from 'react-native';
+import MapView from 'react-native-maps';
 
 // Default region for NTU
 const defaultRegion = {
@@ -18,7 +18,6 @@ const defaultRegion = {
 const Map = ({ children }) => (
   <MapView
     showsPointsOfInterest={false}
-    onRegionChange={this.onRegionChange}
     style={styles.map}
     initialRegion={defaultRegion}
     scrollEnabled={false}

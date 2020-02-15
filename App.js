@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Constants from 'expo-constants';
 //Import component
-import Map from './src/components/Map';
+import MyMap from './src/components/Map';
 import BusMarkerCluster from './src/components/BusMarkerCluster';
 import BusStopMarkerCluster from './src/components/BusStopMarkerCluster';
 import BusRoute from './src/components/BusRoute';
@@ -114,7 +115,7 @@ export default class App extends React.Component {
     const { bus, busStop, busColor, busRoute, routeColor } = this.state;
     return (
       <View style={styles.mainContainer}>
-        <Map>
+        <MyMap>
           <BusStopMarkerCluster
             onClick={this.onClickMarker(busColor)}
             key="bus-stop-marker"
@@ -124,7 +125,7 @@ export default class App extends React.Component {
           />
           <BusMarkerCluster key="bus-marker" bus={bus[busColor]} color={busColor} />
           <BusRoute key="bus-route" coordinates={busRoute[busColor]} color={routeColor[busColor]} />
-        </Map>
+        </MyMap>
         <BusSelectionFilter options={defaultOption} active={userSelection} onSelect={this.onUserSelectBus}>
           <BusDetail {...busStopDetail} />
         </BusSelectionFilter>
@@ -142,6 +143,6 @@ const styles = StyleSheet.create({
     left: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
 });
