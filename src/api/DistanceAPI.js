@@ -91,7 +91,7 @@ function estimateArrivalTime(bus, busStop, busType) {
   let distance = betweenStops.distance / 1000 + initialDistance;
   let noOfStopsPassed = betweenStops.noOfStops;
   // calculate estimated time. Adding 30 for buffer each stops passed (dynamic according to no of stops passed)
-  const buffer = 60 / 3600; //1 min
+  const buffer = 180 / 3600; // 3 min
   let estimatedTime = parseFloat(distance / 1000 / bus.avg_speed) + parseFloat(buffer * noOfStopsPassed);
   const timeInMin = parseFloat((estimatedTime * 60).toPrecision(3));
   return timeInMin;
