@@ -1,15 +1,9 @@
 import * as BUS_TYPE from '../constants/BusType';
-import { Alert } from 'react-native';
 
-const BASE_URL = 'https://baseride.com/routes/apigeo/routevariantvehicle';
-const FORMAT_JSON = '/?format=json';
+const BASE_URL = 'http://baseride.com/routes/apigeo/routevariantvehicle';
+const FORMAT_JSON = '?format=json';
 const RED_PATH = '/44478';
 const BLUE_PATH = '/44479';
-
-const GET = 'get';
-const POST = 'post';
-
-let alertIsOpen = false;
 
 async function fetchBusData(type) {
   var finalURL = BASE_URL;
@@ -23,30 +17,27 @@ async function fetchBusData(type) {
     default:
       break;
   }
-  const request = {
-    method: GET,
-  };
-  return fetch(finalURL, request)
-    .then(response => response.json())
-    .catch(error => {
-      if (!alertIsOpen) {
-        alertIsOpen = true;
-        Alert.alert('Network Error', error.toString(), [
-          {
-            text: 'OK',
-            onPress: () => {
-              alertIsOpen = false;
-            },
-          },
-        ]);
-      }
-      return {};
-    });
+  return new Promise(resolve => {
+    function handleResponse() {
+      const response = JSON.parse(this.responseText);
+      resolve(response);
+    }
+    function handleError() {
+      const response = {};
+      resolve(response);
+    }
+    const oReq = new XMLHttpRequest();
+    oReq.addEventListener('load', handleResponse);
+    oReq.addEventListener('error', handleError);
+    oReq.open('GET', finalURL, true);
+    oReq.send();
+  });
 }
 
 const doGetBusDataAPI = async type => {
-  const data = await fetchBusData(type);
-  const { vehicles = [] } = data;
+  let vehicles = [];
+  const result = await fetchBusData(type);
+  if (result && result.vehicles) vehicles = result.vehicles;
   if (vehicles.length <= 0) return [];
   return vehicles.reduce((acc, data, i) => {
     const { bearing, lat, lon, speed, projection, stats } = data;
